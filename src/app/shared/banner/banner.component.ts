@@ -18,6 +18,12 @@ export class BannerComponent implements OnInit{
             label:'Home',
             icon: 'pi pi-home',
             routerLink:'dashboard'
-        }]
+        },
+        {
+          label:'Auditoria',
+          icon: 'pi pi-eye',
+          routerLink:'auditoria'
+      },
+      ]
       }
 }

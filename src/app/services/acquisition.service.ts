@@ -16,7 +16,6 @@ export class AcquisitionService extends DataService{
   }
 
   getItems(filter: string) {
-    filter = (filter && filter.length > 0) ? `?${filter}` : '';
     let url = `${Properties.ACQUISITIONS_URL}${filter}`;
     return this.get(url);
   }

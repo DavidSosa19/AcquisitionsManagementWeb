@@ -1,14 +1,14 @@
 <p-card header="Lista de Adquisiciones" subheader="Administrar las adquisiciones de bienes y servicios" class="my-card">
     <!-- Espacio y botón arriba de la tabla -->
     <div class="d-flex justify-content-end mb-3">
-      <button pButton pRipple type="button" label="Crear Adquisición" 
+      <button pButton pRipple type="button" label="Registrar Adquisición" 
               class="p-button-primary" style="background-color: #00b3b3; color: white; border: none; font-weight: bold;" 
               (click)="toCreate()">
       </button>
     </div>
   
     <!-- Tabla -->
-    <p-table [value]="acquisitions" [paginator]="true" [rows]="10" [responsive]="true" selectionMode="single" [(selection)]="acquisitionSelected" (onRowSelect)="onRowSelect($event)" [responsive]="true" styleClass="p-datatable-sm">
+    <p-table [value]="acquisitions" [paginator]="true" [rows]="5" [responsive]="true" selectionMode="single" [(selection)]="acquisitionSelected" (onRowSelect)="onRowSelect($event)" [responsive]="true" styleClass="p-datatable-sm">
       
       <!-- Header de la tabla -->
       <ng-template pTemplate="header">
@@ -43,5 +43,66 @@
         </ng-template>
       </ng-template>
     </p-table>
+
+    <form [formGroup]="filterForm">
+      <div class="filter-container">
+        
+        <div class="input-item">
+          <label for="unidad">Unidad</label>
+          <p-dropdown 
+                id="unidad"
+                [options]="unities" 
+                formControlName="unidad"
+                optionLabel="nombre"
+                optionValue="id"
+                placeholder="Seleccione una unidad"
+                [showClear]="true"
+                [style]="{'width':'100%'}">
+              </p-dropdown>
+          <div *ngIf="filterForm.get('unidad')?.invalid && filterForm.get('unidad')?.touched" class="text-danger">
+            <small>Unidad es obligatoria.</small>
+          </div>
+        </div>
+      
+        <div class="input-item">
+          <label for="proveedor">Proveedor</label>
+          <p-dropdown 
+                id="proveedor"
+                [options]="providers" 
+                formControlName="proveedor"
+                optionLabel="nombre"
+                optionValue="id"
+                placeholder="Seleccione un proveedor"
+                [showClear]="true"
+                [style]="{'width':'100%'}">
+              </p-dropdown>
+          <div *ngIf="filterForm.get('proveedor')?.invalid && filterForm.get('proveedor')?.touched" class="text-danger">
+            <small>Proveedor es obligatorio.</small>
+          </div>
+        </div>
+      
+        <div class="input-item">
+          <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
+          <p-dropdown 
+                id="tipoBienServicio"
+                [options]="assetTypes" 
+                formControlName="tipoBienServicio"
+                optionLabel="nombre"
+                optionValue="id"
+                placeholder="Seleccione un tipo de bien/servicio"
+                [showClear]="true"
+                [style]="{'width':'100%'}">
+              </p-dropdown>
+          <div *ngIf="filterForm.get('tipoBienServicio')?.invalid && filterForm.get('tipoBienServicio')?.touched" class="text-danger">
+            <small>Tipo de Bien/Servicio es obligatorio.</small>
+          </div>
+        </div>
+        <div class="filter-buttons">
+          <button class="btn-filter" (click)="filter()">Filtrar</button>
+          <button class="btn-reset" (click)="resetFilter()">Resetear</button>
+        </div>
+      </div>
+      
+    </form>
   </p-card>
   

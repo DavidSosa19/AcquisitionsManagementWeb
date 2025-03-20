@@ -8,5 +8,5 @@ html, body {
   
   app-root {
     height: 80%;  /* Ocupa toda la altura de la ventana */
-    overflow: hidden;  /* Si el contenido excede la altura, agrega scroll */
+    overflow: auto;  /* Si el contenido excede la altura, agrega scroll */
   }
