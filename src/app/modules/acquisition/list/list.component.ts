@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { AcquisitionService } from '../../../services/acquisition.service';
 import { Acquisition } from '../../../models/acquisiton';
 import { Router } from '@angular/router';
+import { Provider } from '../../../models/provider';
+import { Unit } from '../../../models/Unit';
+import { AssetServiceType } from '../../../models/asset-service-type';
 
 @Component({
   selector: 'app-list',
@@ -11,6 +14,9 @@ import { Router } from '@angular/router';
 export class ListComponent implements OnInit{
 
   acquisitions!: Acquisition[];
+  providers!: Provider[];
+  unities!: Unit[];
+  assetTypes!: AssetServiceType[];
   acquisitionSelected!: Acquisition;
   loading!:boolean;
 
@@ -30,33 +36,31 @@ export class ListComponent implements OnInit{
     this.getItems();
   }
 
-  getItems(){
-    this.loading = true;
-    this.acquisitionService.getItems('').subscribe(
-      res=>{
-        this.acquisitions = res.body
-        console.log(res.body);
-        this.loading = false;
-      }, 
-      error =>{
-        console.log(error);
+  getItems() {
+    this.acquisitionService.getItems('').subscribe({
+      next: (res) => {
+        this.acquisitions = res.body; 
+      },
+      error: (error) => {
+        console.error(error);
       }
-    )
+    });
   }
 
   toCreate(): void {
-    this.router.navigate(['/Acquisitions/add']);
+    this.router.navigate(['/acquisitions/add']);
   }
 
   toDashBoard(): void {
     this.router.navigate(['/dashboard']);
   }
 
+  toView(id:number){
+    this.router.navigate([`/acquisitions/view/${id}`]);
+  }
+
   onRowSelect(event: any) {
-    if(!this.loading) {
-      this.router.navigate([`/Acquisitions/view/${this.acquisitionSelected.id}`]);
-    } else {
-      return;
-    }
+    const selectedRow = event.data; // Obtén la fila seleccionada desde el evento
+    this.toView(selectedRow.id)
   }
 }

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Properties } from '../util/properties';
 import { DataService } from './data.service';
 import { Acquisition } from '../models/acquisiton';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +22,7 @@ export class AcquisitionService extends DataService{
   }
 
   getById(id:Number){
-    let url = `${Properties.ACQUISITIONS_URL}/${id}`;
+    let url = `${Properties.ACQUISITIONS_URL}/view/${id}`;
     return this.get(url);
   }
 
@@ -39,5 +40,41 @@ export class AcquisitionService extends DataService{
   remove(id:Number){
     let url = `${Properties.ACQUISITIONS_URL}/delete/${id}`;
     return this.delete(url);
+  }
+
+  getProviders(){
+    let url = `${Properties.PROVIDERS_URL}`;
+    return this.get(url);
+  }
+
+  getProvider(id:Number){
+    let url = `${Properties.PROVIDERS_URL}/view/${id}`;
+    return this.get(url);
+  }
+
+  getProviderName(id: number): Observable<string> {
+    let url = `${Properties.PROVIDERS_URL}/view/${id}`;
+    return this.getObjectName(url);
+  }
+
+  getUnities(){
+    let url = `${Properties.UNITIES_URL}`;
+    return this.get(url);
+  }
+
+  
+  getUnit(id:Number){
+    let url = `${Properties.UNITIES_URL}/view/${id}`;
+    return this.get(url);
+  }
+
+  getAssetsTypes(){
+    let url = `${Properties.ASSETS_TYPES_URL}`;
+    return this.get(url);
+  }
+  
+  getAssetType(id:Number){
+    let url = `${Properties.ASSETS_TYPES_URL}/view/${id}`;
+    return this.get(url);
   }
 }

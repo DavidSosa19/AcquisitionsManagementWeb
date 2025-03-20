@@ -3,16 +3,17 @@ import { AssetServiceType } from "./asset-service-type";
 import { EntidadDB } from "./entidad-db";
 import { Unit } from "./Unit";
 
-export class Acquisition extends EntidadDB {
+export class Acquisition {
+    id!:Number
     presupuesto!: number;
-    unidad!: Unit;
-    tipoBienServicio!: AssetServiceType;
+    unidad!: number;
+    tipoBienServicio!: number;
     cantidad!: number;
     valorUnitario!: number;
     valorTotal!: number;
-    fechaAdquisicion!: Date;
-    proveedor!: Provider;
+    fechaAdquisicion!: string;
+    proveedor!: number;
     documentacion!: string[];
-    createdAt!: Date;
-    updatedAt?: Date;
+    createdAt!: string;
+    updatedAt?: string;
   }

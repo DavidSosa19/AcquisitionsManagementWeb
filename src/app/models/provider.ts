@@ -1,5 +1,4 @@
-import { EntidadDB } from "./entidad-db";
-
-export class Provider extends EntidadDB {
+export class Provider{
+    id!: number;
     nombre!: string;
   }

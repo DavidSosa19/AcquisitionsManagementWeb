@@ -29,15 +29,15 @@ export class ViewComponent  implements OnInit {
 
   initialize(){
     this.formAcquisition = this.formBuilder.group({
-      presupuesto: ['', Validators.required, Validators.min(0)],
-      unidad: ['', Validators.required],
-      tipoBienServicio: ['', Validators.required],
-      cantidad: ['', Validators.required, Validators.min(0)],
-      valorUnitario: ['', Validators.required, Validators.min(0)],
-      valorTotal: ['', Validators.required, Validators.min(0)],
-      fechaAdquisicion: ['', Validators.required],
-      proveedor: ['', Validators.required],
-      documentacion: ['', Validators.required]
+      presupuesto: [''],
+      unidad: [''],
+      tipoBienServicio: [''],
+      cantidad: [''],
+      valorUnitario: [''],
+      valorTotal: [''],
+      fechaAdquisicion: [''],
+      proveedor: ['', ],
+      documentacion: ['']
     });
     this.getAcquisition();
   }
@@ -47,6 +47,8 @@ export class ViewComponent  implements OnInit {
       const id: Number = params[ 'id' ];
       this.acquisitionService.getById(id).subscribe(
         res=>{
+          console.log(res.body);
+          
           this.acquisition = res.body;
           this.formAcquisition.patchValue({
             presupuesto:this.acquisition.presupuesto,
@@ -68,15 +70,17 @@ export class ViewComponent  implements OnInit {
     this.acquisitionService.remove(this.acquisition.id).subscribe(
       res=>{
         console.log(res);
+        this.toList();
       }
     )
   }
 
   toList(){
-    this.router.navigate(['/Acquisitions']);
+    this.router.navigate(['/acquisitions']);
   }
 
   toEdit(){
-    this.router.navigate([`/Acquisitions/edit/${this.acquisition.id}`]);
+    this.router.navigate([`/acquisitions/edit/${this.acquisition.id}`]);
   }
+
 }

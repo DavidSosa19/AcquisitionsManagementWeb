@@ -1,2 +1,47 @@
-<p>list works!</p>
-<h1>{{acquisitions}}</h1>
+<p-card header="Lista de Adquisiciones" subheader="Administrar las adquisiciones de bienes y servicios" class="my-card">
+    <!-- Espacio y botón arriba de la tabla -->
+    <div class="d-flex justify-content-end mb-3">
+      <button pButton pRipple type="button" label="Crear Adquisición" 
+              class="p-button-primary" style="background-color: #00b3b3; color: white; border: none; font-weight: bold;" 
+              (click)="toCreate()">
+      </button>
+    </div>
+  
+    <!-- Tabla -->
+    <p-table [value]="acquisitions" [paginator]="true" [rows]="10" [responsive]="true" selectionMode="single" [(selection)]="acquisitionSelected" (onRowSelect)="onRowSelect($event)" [responsive]="true" styleClass="p-datatable-sm">
+      
+      <!-- Header de la tabla -->
+      <ng-template pTemplate="header">
+        <tr>
+          <th>Unidad</th>
+          <th>Tipo</th>
+          <th>Valor Total</th>
+          <th>Proveedor</th>
+          <th>Fecha Adquisición</th>
+        </tr>
+      </ng-template>
+  
+      <!-- Cuerpo de la tabla -->
+      <ng-template pTemplate="body" let-item>
+        <ng-container *ngIf="acquisitions && acquisitions.length > 0; else noResults">
+          <tr [pSelectableRow]="item">
+            <td>{{ item?.unidad | unitName | async}}</td>
+            <td>{{ item?.tipoBienServicio | assetTypeName | async }}</td>
+            <td>{{ item?.valorTotal | currency:'USD' }}</td>
+            <td>{{ item?.proveedor | providerName |async}}</td>
+            <td>{{ item?.fechaAdquisicion }}</td>
+          </tr>
+        </ng-container>
+  
+        <!-- Mensaje cuando no hay adquisiciones -->
+        <ng-template #noResults>
+          <tr>
+            <td colspan="5" class="text-center text-info">
+              <strong>No hay adquisiciones registradas.</strong>
+            </td>
+          </tr>
+        </ng-template>
+      </ng-template>
+    </p-table>
+  </p-card>
+  

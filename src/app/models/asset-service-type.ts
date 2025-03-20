@@ -1,5 +1,6 @@
 import { EntidadDB } from "./entidad-db";
 
-export class AssetServiceType extends EntidadDB {
+export class AssetServiceType{
+    id!:number;
     nombre!: string;
   }

@@ -6,8 +6,8 @@ import {
   HttpResponse
 } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
-import { catchError, delay } from 'rxjs/operators';
+import { Observable, of, throwError } from 'rxjs';
+import { catchError, delay, map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
@@ -23,50 +23,51 @@ export class DataService {
   * Método encargado de obtener los headers necesarios para la ejecucion del servicio
   */
   protected getContentHeader() {
-      var header = new HttpHeaders({'Content-Type': 'application/x-www-form-urlencoded'});
-      return header
+    return new HttpHeaders({ 'Content-Type': 'application/json' });
   }
 
-  private getTokenHeader(auth:string){
-      var header = new HttpHeaders({'Authorization': `Bearer ${auth}`});
-      return header
-  }
-
-  /**
-   * Función para obtener datos dado una url y un token
-   *
-   * @param url path a consultar el servicio web
-   */
-  public get(url: string): Observable<any> {
-    return (
-      this._http
-        .get(url)
-        .pipe(catchError(this.handleError))
-    );
-  }
-
-  protected post(url: string, params: any): Observable<any> {
-    const body = JSON.stringify(params);
+  public get(url: string): Observable<HttpResponse<any>> {
+    const options = { 
+      headers: this.getContentHeader(),
+      observe: 'response' as const 
+    };
     return this._http
-      .post(url, body)
+      .get<HttpResponse<any>>(url, options) 
+      .pipe(catchError(this.handleError)); 
+  }
+
+  protected post(url: string, params: any): Observable<HttpResponse<any>> {
+    const body = JSON.stringify(params); 
+    const options = { 
+      headers: this.getContentHeader(), 
+      observe: 'response' as const
+    };
+    return this._http
+      .post<HttpResponse<any>>(url, body, options)
+      .pipe(catchError(this.handleError)); 
+  }
+
+   protected put(url: string, params: any): Observable<HttpResponse<any>> {
+    const body = JSON.stringify(params);
+    const options = { 
+      headers: this.getContentHeader(),
+      observe: 'response' as const // Especificamos que esperamos toda la respuesta
+    };
+    return this._http
+      .put<HttpResponse<any>>(url, body, options) // Tipo HttpResponse<any>
       .pipe(catchError(this.handleError));
   }
 
-  protected put(url: string, params: any): Observable<any> {
-    const body = JSON.stringify(params);
-
-    return this._http
-      .put(url, body)
-      .pipe(catchError(this.handleError));
-  }
 
   
-  protected delete(url: string): Observable<any> {
-    return (
-      this._http
-        .delete(url)
-        .pipe(catchError(this.handleError))
-    );
+  protected delete(url: string): Observable<HttpResponse<any>> {
+    const options = { 
+      headers: this.getContentHeader(),
+      observe: 'response' as const // Especificamos que esperamos toda la respuesta
+    };
+    return this._http
+      .delete<HttpResponse<any>>(url, options) // Tipo HttpResponse<any>
+      .pipe(catchError(this.handleError));
   }
 
 
@@ -77,14 +78,18 @@ export class DataService {
       console.error('An error occurred:', error.error.message);
     } else {
       // The backend returned an unsuccessful response code.
-      // The response body may contain clues as to what went wrong,
       console.error(
-        `Backend returned code ${error.status}, ` + `body was: ${error}`
+        `Backend returned code ${error.status}, ` + `body was: ${error.error}`
       );
-
     }
-    // throw error;
-    // return an observable with a user-facing error message
-    return throwError(() => error);
+    return throwError(() => error); // Regresa el error para manejarlo en el componente
   }
+
+  getObjectName(url:string): Observable<string> {
+    return this._http.get<any>(url).pipe(
+      map(res => res.body?.nombre || 'Desconocido'), 
+      catchError(() => of('Desconocido')) 
+    );
+  }
+  
 }
