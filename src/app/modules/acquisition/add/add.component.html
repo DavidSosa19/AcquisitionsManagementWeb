@@ -117,3 +117,16 @@
     </p-card>
   </div>
   
+
+  <section>
+    <p-card header="Registrar Adquisición" styleClass="my-card">
+    
+      <button pButton label="Guardar" icon="pi pi-save"(click)="onSubmit()"></button>
+    <form [formGroup]="formAcquisition">
+      <fieldset>
+        <legend>Propiedades de la Adquisición</legend>
+
+      </fieldset>
+    </form>
+  </p-card>
+  </section>
