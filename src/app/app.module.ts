@@ -12,6 +12,9 @@ import { DropdownModule } from 'primeng/dropdown';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
+import { routes } from './app-routing.module';
+import { AppRoutingModule } from "./app-routing.module";
+import { RouterOutlet } from "@angular/router";
 
 @NgModule({ 
     declarations: [
@@ -22,13 +25,15 @@ import Aura from '@primeng/themes/aura';
     ], 
     imports: [
         BrowserModule,
+        BrowserAnimationsModule,
+        AppRoutingModule,
         AcquisitionModule,
         DashboardModule,
         ReactiveFormsModule,
         SharedModule,
         DropdownModule,
-        BrowserAnimationsModule
-    ], 
+        RouterOutlet
+    ],
     providers: [
         provideHttpClient(withInterceptorsFromDi()),
         provideAnimations(),
