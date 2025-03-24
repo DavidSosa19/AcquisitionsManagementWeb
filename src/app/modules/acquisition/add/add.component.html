@@ -1,132 +1,97 @@
-<div class="container-fluid">
-    <p-card header="Registrar Adquisición" styleClass="my-card">
-      <!-- Botón alineado a la derecha -->
-      <div class="d-flex justify-content-end mb-3">
-        <button pButton label="Guardar" icon="pi pi-save" class="p-button-primary" (click)="onSubmit()"></button>
-      </div>
-  
-      <!-- Malla de inputs -->
-      <form [formGroup]="formAcquisition">
-        <div class="input-grid">
-          <div class="input-item">
-            <label for="presupuesto">Presupuesto</label>
-            <input type="text" pInputText id="presupuesto" formControlName="presupuesto" placeholder="Presupuesto"
-              [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('presupuesto')?.invalid && formAcquisition.get('presupuesto')?.touched}">
-            <div *ngIf="formAcquisition.get('presupuesto')?.invalid && formAcquisition.get('presupuesto')?.touched" class="text-danger">
-              <small>Presupuesto es obligatorio, numerico y mayor que 0.</small>
-            </div>
-          </div>
-          
-          <div class="input-item">
-            <label for="unidad">Unidad</label>
-            <p-dropdown 
-                  id="unidad"
-                  [options]="unities" 
-                  formControlName="unidad"
-                  optionLabel="nombre"
-                  optionValue="id"
-                  placeholder="Seleccione una unidad"
-                  [showClear]="true"
-                  [style]="{'width':'100%'}">
-                </p-dropdown>
-            <div *ngIf="formAcquisition.get('unidad')?.invalid && formAcquisition.get('unidad')?.touched" class="text-danger">
-              <small>Unidad es obligatoria.</small>
-            </div>
-          </div>
-          
-          <div class="input-item">
-            <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
-            <p-dropdown 
-                  id="tipoBienServicio"
-                  [options]="assetTypes" 
-                  formControlName="tipoBienServicio"
-                  optionLabel="nombre"
-                  optionValue="id"
-                  placeholder="Seleccione un tipo de bien/servicio"
-                  [showClear]="true"
-                  [style]="{'width':'100%'}">
-                </p-dropdown>
-            <div *ngIf="formAcquisition.get('tipoBienServicio')?.invalid && formAcquisition.get('tipoBienServicio')?.touched" class="text-danger">
-              <small>Tipo de Bien/Servicio es obligatorio.</small>
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="cantidad">Cantidad</label>
-            <input type="number" pInputText id="cantidad" formControlName="cantidad" placeholder="Cantidad"
-              [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('cantidad')?.invalid && formAcquisition.get('cantidad')?.touched}">
-            <div *ngIf="formAcquisition.get('cantidad')?.invalid && formAcquisition.get('cantidad')?.touched" class="text-danger">
-              <small>Cantidad es obligatoria, numerica y mayor que 0.</small>
-            </div>
-          </div>
-          
-          <div class="input-item">
-            <label for="valorUnitario">Valor Unitario</label>
-            <input type="number" pInputText id="valorUnitario" formControlName="valorUnitario" placeholder="Valor Unitario"
-              [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('valorUnitario')?.invalid && formAcquisition.get('valorUnitario')?.touched}">
-            <div *ngIf="formAcquisition.get('valorUnitario')?.invalid && formAcquisition.get('valorUnitario')?.touched" class="text-danger">
-              <small>Valor Unitario es obligatorio, numerico y mayor que 0.</small>
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="valorTotal">Valor Total</label>
-            <input type="number" pInputText id="valorTotal" formControlName="valorTotal" placeholder="Valor Total"
-              [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('valorTotal')?.invalid && formAcquisition.get('valorTotal')?.touched}">
-            <div *ngIf="formAcquisition.get('valorTotal')?.invalid && formAcquisition.get('valorTotal')?.touched" class="text-danger">
-              <small>Valor Total es obligatorio y debe ser mayor que 0.</small>
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="fechaAdquisicion">Fecha de Adquisición</label>
-            <input type="date" pInputText id="fechaAdquisicion" formControlName="fechaAdquisicion" placeholder="Fecha de Adquisición"
-              [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('fechaAdquisicion')?.invalid && formAcquisition.get('fechaAdquisicion')?.touched}">
-            <div *ngIf="formAcquisition.get('fechaAdquisicion')?.invalid && formAcquisition.get('fechaAdquisicion')?.touched" class="text-danger">
-              <small>Fecha de Adquisición es obligatoria.</small>
-            </div>
-          </div>
-          
-          <div class="input-item">
-            <label for="proveedor">Proveedor</label>
-            <p-dropdown 
-                  id="proveedor"
-                  [options]="providers" 
-                  formControlName="proveedor"
-                  optionLabel="nombre"
-                  optionValue="id"
-                  placeholder="Seleccione un proveedor"
-                  [showClear]="true"
-                  [style]="{'width':'100%'}">
-                </p-dropdown>
-            <div *ngIf="formAcquisition.get('proveedor')?.invalid && formAcquisition.get('proveedor')?.touched" class="text-danger">
-              <small>Proveedor es obligatorio.</small>
-            </div>
-          </div>
-  
-          <div class="input-item">
-            <label for="documentacion">Documentación</label>
-            <input type="text" pInputText id="documentacion" formControlName="documentacion" placeholder="Documentación"
-              [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('documentacion')?.invalid && formAcquisition.get('documentacion')?.touched}">
-            <div *ngIf="formAcquisition.get('documentacion')?.invalid && formAcquisition.get('documentacion')?.touched" class="text-danger">
-              <small>Documentación es obligatoria.</small>
-            </div>
-          </div>
-        </div>
-      </form>
-    </p-card>
-  </div>
-  
-
-  <section>
-    <p-card header="Registrar Adquisición" styleClass="my-card">
-    
-      <button pButton label="Guardar" icon="pi pi-save"(click)="onSubmit()"></button>
-    <form [formGroup]="formAcquisition">
+<!-- Componente para agregar una adquisición -->
+<section>
+  <p-card header="Registrar Adquisición" [style]="{'height':'100%'}">
+    <button pButton label="Volver" icon="pi pi-angle-left" (click)="toList()"></button>
+    <button pButton label="Guardar" icon="pi pi-save" (click)="onSubmit()"></button>
+    <form
+     [formGroup]="formAcquisition">
       <fieldset>
         <legend>Propiedades de la Adquisición</legend>
-
+        <!--Presupuesto  -->
+        <label for="presupuesto">Presupuesto</label>
+        <input type="text" pInputText id="presupuesto" formControlName="presupuesto" placeholder="Presupuesto"
+          [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('presupuesto')?.invalid && formAcquisition.get('presupuesto')?.touched}">
+        <div *ngIf="formAcquisition.get('presupuesto')?.invalid && formAcquisition.get('presupuesto')?.touched" class="text-danger">
+          <small>Presupuesto es obligatorio, numerico y mayor que 0.</small>
+        </div>
+        <!--Unidad  -->
+        <label for="unidad">Unidad</label>
+        <p-dropdown 
+              id="unidad"
+              [options]="unities" 
+              formControlName="unidad"
+              optionLabel="nombre"
+              optionValue="id"
+              placeholder="Seleccione una unidad"
+              [showClear]="true">
+            </p-dropdown>
+        <div *ngIf="formAcquisition.get('unidad')?.invalid && formAcquisition.get('unidad')?.touched" class="text-danger">
+          <small>Unidad es obligatoria.</small>
+        </div>
+        <!--Tipo Bien Servicio -->
+        <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
+        <p-dropdown 
+              id="tipoBienServicio"
+              [options]="assetTypes" 
+              formControlName="tipoBienServicio"
+              optionLabel="nombre"
+              optionValue="id"
+              placeholder="Seleccione un tipo de bien/servicio"
+              [showClear]="true">
+            </p-dropdown>
+        <div *ngIf="formAcquisition.get('tipoBienServicio')?.invalid && formAcquisition.get('tipoBienServicio')?.touched" class="text-danger">
+          <small>Tipo de Bien/Servicio es obligatorio.</small>
+        </div>
+        <!-- Cantidad -->
+        <label for="cantidad">Cantidad</label>
+        <input type="number" pInputText id="cantidad" formControlName="cantidad" placeholder="Cantidad"
+          [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('cantidad')?.invalid && formAcquisition.get('cantidad')?.touched}">
+        <div *ngIf="formAcquisition.get('cantidad')?.invalid && formAcquisition.get('cantidad')?.touched" class="text-danger">
+          <small>Cantidad es obligatoria, numerica y mayor que 0.</small>
+        </div>
+        <!-- Valor Unitario -->
+        <label for="valorUnitario">Valor Unitario</label>
+        <input type="number" pInputText id="valorUnitario" formControlName="valorUnitario" placeholder="Valor Unitario"
+          [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('valorUnitario')?.invalid && formAcquisition.get('valorUnitario')?.touched}">
+        <div *ngIf="formAcquisition.get('valorUnitario')?.invalid && formAcquisition.get('valorUnitario')?.touched" class="text-danger">
+          <small>Valor Unitario es obligatorio, numerico y mayor que 0.</small>
+        </div>
+        <!-- Valor Total -->
+        <label for="valorTotal">Valor Total</label>
+        <input type="number" pInputText id="valorTotal" formControlName="valorTotal" placeholder="Valor Total"
+          [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('valorTotal')?.invalid && formAcquisition.get('valorTotal')?.touched}">
+        <div *ngIf="formAcquisition.get('valorTotal')?.invalid && formAcquisition.get('valorTotal')?.touched" class="text-danger">
+          <small>Valor Total es obligatorio y debe ser mayor que 0.</small>
+        </div>
+        <!-- fecha adquisicion -->
+        <label for="fechaAdquisicion">Fecha de Adquisición</label>
+        <input type="date" pInputText id="fechaAdquisicion" formControlName="fechaAdquisicion" placeholder="Fecha de Adquisición"
+          [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('fechaAdquisicion')?.invalid && formAcquisition.get('fechaAdquisicion')?.touched}">
+        <div *ngIf="formAcquisition.get('fechaAdquisicion')?.invalid && formAcquisition.get('fechaAdquisicion')?.touched" class="text-danger">
+          <small>Fecha de Adquisición es obligatoria.</small>
+        </div>
+        <!-- Proveedor -->
+        <label for="proveedor">Proveedor</label>
+        <p-dropdown 
+              id="proveedor"
+              [options]="providers" 
+              formControlName="proveedor"
+              optionLabel="nombre"
+              optionValue="id"
+              placeholder="Seleccione un proveedor"
+              [showClear]="true">
+            </p-dropdown>
+        <div *ngIf="formAcquisition.get('proveedor')?.invalid && formAcquisition.get('proveedor')?.touched" class="text-danger">
+          <small>Proveedor es obligatorio.</small>
+        </div>
+        <!-- Documentación -->
+        <label for="documentacion">Documentación</label>
+        <input type="text" pInputText id="documentacion" formControlName="documentacion" placeholder="Documentación"
+          [ngClass]="{'ng-invalid ng-dirty': formAcquisition.get('documentacion')?.invalid && formAcquisition.get('documentacion')?.touched}">
+        <div *ngIf="formAcquisition.get('documentacion')?.invalid && formAcquisition.get('documentacion')?.touched" class="text-danger">
+          <small>Documentación es obligatoria.</small>
+        </div>
       </fieldset>
     </form>
   </p-card>
-  </section>
+</section>

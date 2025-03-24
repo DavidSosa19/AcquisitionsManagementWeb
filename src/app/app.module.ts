@@ -1,20 +1,25 @@
 import { NgModule } from '@angular/core';
+
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'; 
-import { provideRouter } from '@angular/router';
-import { AppComponent } from './app.component';
-import { AcquisitionModule } from './modules/acquisition/acquisition.module'; 
-import { DashboardModule } from './modules/dashboard/dashboard.module'; 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
-import { SharedModule } from './shared/shared.module';
-import { DropdownModule } from 'primeng/dropdown';
+import { provideRouter, RouterOutlet } from '@angular/router';
 import { provideAnimations } from '@angular/platform-browser/animations';
+
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import  MyPreset  from './util/app-theme-preset';
+import Material from '@primeng/themes/material';
+import Lara from '@primeng/themes/lara';
+import Nora from '@primeng/themes/nora';
+
+import { AppComponent } from './app.component';
+import { AcquisitionModule } from './modules/acquisition/acquisition.module';
+import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { SharedModule } from './shared/shared.module';
+
 import { routes } from './app-routing.module';
-import { AppRoutingModule } from "./app-routing.module";
-import { RouterOutlet } from "@angular/router";
+import { AppRoutingModule } from './app-routing.module';
+
 
 @NgModule({ 
     declarations: [
@@ -29,9 +34,7 @@ import { RouterOutlet } from "@angular/router";
         AppRoutingModule,
         AcquisitionModule,
         DashboardModule,
-        ReactiveFormsModule,
         SharedModule,
-        DropdownModule,
         RouterOutlet
     ],
     providers: [
@@ -39,7 +42,7 @@ import { RouterOutlet } from "@angular/router";
         provideAnimations(),
         providePrimeNG({
             theme: {
-                preset: Aura
+                preset: Lara
             }
         }),
         provideRouter(routes)

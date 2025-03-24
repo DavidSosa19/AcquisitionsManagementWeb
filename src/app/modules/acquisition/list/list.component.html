@@ -1,15 +1,9 @@
-<p-card header="Lista de Adquisiciones" subheader="Administrar las adquisiciones de bienes y servicios" class="my-card">
-    <!-- Espacio y botón arriba de la tabla -->
-    <div class="d-flex justify-content-end mb-3">
-      <button pButton pRipple type="button" label="Registrar Adquisición" 
-              class="p-button-primary" style="background-color: #00b3b3; color: white; border: none; font-weight: bold;" 
-              (click)="toCreate()">
-      </button>
-    </div>
-  
-    <!-- Tabla -->
+<!-- Componente de la vista de listado de adquisiciones -->
+<section>
+  <p-card header="Filtrar Adquisiciones" [style]="{'height':'70%'}">
+    <button pButton label="Registrar adquisición" icon="pi pi-plus" (click)="toCreate()"></button>
     <p-table [value]="acquisitions" [paginator]="true" [rows]="5" [responsive]="true" selectionMode="single" [(selection)]="acquisitionSelected" (onRowSelect)="onRowSelect($event)" [responsive]="true" styleClass="p-datatable-sm">
-      
+    
       <!-- Header de la tabla -->
       <ng-template pTemplate="header">
         <tr>
@@ -23,7 +17,7 @@
   
       <!-- Cuerpo de la tabla -->
       <ng-template pTemplate="body" let-item>
-        <ng-container *ngIf="acquisitions && acquisitions.length > 0; else noResults">
+        <ng-container *ngIf="acquisitions && acquisitions.length > 0">
           <tr [pSelectableRow]="item">
             <td>{{ item?.unidad | unitName | async}}</td>
             <td>{{ item?.tipoBienServicio | assetTypeName | async }}</td>
@@ -32,77 +26,59 @@
             <td>{{ item?.fechaAdquisicion }}</td>
           </tr>
         </ng-container>
-  
-        <!-- Mensaje cuando no hay adquisiciones -->
-        <ng-template #noResults>
-          <tr>
-            <td colspan="5" class="text-center text-info">
-              <strong>No hay adquisiciones registradas.</strong>
-            </td>
-          </tr>
-        </ng-template>
       </ng-template>
     </p-table>
-
-    <form [formGroup]="filterForm">
-      <div class="filter-container">
-        
-        <div class="input-item">
-          <label for="unidad">Unidad</label>
-          <p-dropdown 
-                id="unidad"
-                [options]="unities" 
-                formControlName="unidad"
-                optionLabel="nombre"
-                optionValue="id"
-                placeholder="Seleccione una unidad"
-                [showClear]="true"
-                [style]="{'width':'100%'}">
-              </p-dropdown>
-          <div *ngIf="filterForm.get('unidad')?.invalid && filterForm.get('unidad')?.touched" class="text-danger">
-            <small>Unidad es obligatoria.</small>
-          </div>
+  </p-card >
+  <p-card header="Filtrar Adquisiciones" [style]="{'height':'30%'}">
+    <button pButton label="Filtrar" icon="pi pi-sliders-v" (click)="filter()"></button>
+    <button pButton label="Limpiar Filtro" icon="pi pi-undo" (click)="resetFilter()"></button>
+    <form
+      [formGroup]="filterForm">
+      <fieldset>
+        <legend>Campos</legend>
+        <!--Unidad  -->
+        <label for="unidad">Unidad</label>
+        <p-dropdown 
+              id="unidad"
+              [options]="unities" 
+              formControlName="unidad"
+              optionLabel="nombre"
+              optionValue="id"
+              placeholder="Seleccione una unidad"
+              [showClear]="true">
+            </p-dropdown>
+        <div *ngIf="filterForm.get('unidad')?.invalid && filterForm.get('unidad')?.touched" class="text-danger">
+          <small>Unidad es obligatoria.</small>
         </div>
-      
-        <div class="input-item">
-          <label for="proveedor">Proveedor</label>
-          <p-dropdown 
-                id="proveedor"
-                [options]="providers" 
-                formControlName="proveedor"
-                optionLabel="nombre"
-                optionValue="id"
-                placeholder="Seleccione un proveedor"
-                [showClear]="true"
-                [style]="{'width':'100%'}">
-              </p-dropdown>
-          <div *ngIf="filterForm.get('proveedor')?.invalid && filterForm.get('proveedor')?.touched" class="text-danger">
-            <small>Proveedor es obligatorio.</small>
-          </div>
+        <!--Tipo Bien Servicio -->
+        <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
+        <p-dropdown 
+              id="tipoBienServicio"
+              [options]="assetTypes" 
+              formControlName="tipoBienServicio"
+              optionLabel="nombre"
+              optionValue="id"
+              placeholder="Seleccione un tipo de bien/servicio"
+              [showClear]="true">
+            </p-dropdown>
+        <div *ngIf="filterForm.get('tipoBienServicio')?.invalid && filterForm.get('tipoBienServicio')?.touched" class="text-danger">
+          <small>Tipo de Bien/Servicio es obligatorio.</small>
         </div>
-      
-        <div class="input-item">
-          <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
-          <p-dropdown 
-                id="tipoBienServicio"
-                [options]="assetTypes" 
-                formControlName="tipoBienServicio"
-                optionLabel="nombre"
-                optionValue="id"
-                placeholder="Seleccione un tipo de bien/servicio"
-                [showClear]="true"
-                [style]="{'width':'100%'}">
-              </p-dropdown>
-          <div *ngIf="filterForm.get('tipoBienServicio')?.invalid && filterForm.get('tipoBienServicio')?.touched" class="text-danger">
-            <small>Tipo de Bien/Servicio es obligatorio.</small>
-          </div>
+        <!-- Proveedor -->
+        <label for="proveedor">Proveedor</label>
+        <p-dropdown 
+              id="proveedor"
+              [options]="providers" 
+              formControlName="proveedor"
+              optionLabel="nombre"
+              optionValue="id"
+              placeholder="Seleccione un proveedor"
+              [showClear]="true">
+            </p-dropdown>
+        <div *ngIf="filterForm.get('proveedor')?.invalid && filterForm.get('proveedor')?.touched" class="text-danger">
+          <small>Proveedor es obligatorio.</small>
         </div>
-        <div class="filter-buttons">
-          <button class="btn-filter" (click)="filter()">Filtrar</button>
-          <button class="btn-reset" (click)="resetFilter()">Resetear</button>
-        </div>
-      </div>
-      
+      </fieldset>
     </form>
   </p-card>
-  
+</section>
