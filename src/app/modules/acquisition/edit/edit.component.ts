@@ -9,9 +9,10 @@ import { Provider } from '../../../models/provider';
 import { Unit } from '../../../models/Unit';
 import { AssetServiceType } from '../../../models/asset-service-type';
 @Component({
-  selector: 'app-edit',
-  templateUrl: './edit.component.html',
-  styleUrl: './edit.component.css'
+    selector: 'app-edit',
+    templateUrl: './edit.component.html',
+    styleUrl: './edit.component.css',
+    standalone: false
 })
 export class EditComponent implements OnInit {
 

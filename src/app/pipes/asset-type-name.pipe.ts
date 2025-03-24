@@ -3,7 +3,8 @@ import { AcquisitionService } from '../services/acquisition.service';
 import { catchError, map, Observable, of } from 'rxjs';
 
 @Pipe({
-  name: 'assetTypeName'
+    name: 'assetTypeName',
+    standalone: false
 })
 export class AssetTypeNamePipe implements PipeTransform {
 

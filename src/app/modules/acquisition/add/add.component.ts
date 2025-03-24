@@ -8,9 +8,10 @@ import { Unit } from '../../../models/Unit';
 import { AssetServiceType } from '../../../models/asset-service-type';
 
 @Component({
-  selector: 'app-add',
-  templateUrl: './add.component.html',
-  styleUrls: ['./add.component.css'] 
+    selector: 'app-add',
+    templateUrl: './add.component.html',
+    styleUrls: ['./add.component.css'],
+    standalone: false
 })
 export class AddComponent implements OnInit {
 

@@ -5,9 +5,10 @@ import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-view',
-  templateUrl: './view.component.html',
-  styleUrl: './view.component.css'
+    selector: 'app-view',
+    templateUrl: './view.component.html',
+    styleUrl: './view.component.css',
+    standalone: false
 })
 export class ViewComponent  implements OnInit {
 

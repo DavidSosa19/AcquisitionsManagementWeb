@@ -8,9 +8,10 @@ import { AssetServiceType } from '../../../models/asset-service-type';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-list',
-  templateUrl: './list.component.html',
-  styleUrl: './list.component.css'
+    selector: 'app-list',
+    templateUrl: './list.component.html',
+    styleUrl: './list.component.css',
+    standalone: false
 })
 export class ListComponent implements OnInit{
 
