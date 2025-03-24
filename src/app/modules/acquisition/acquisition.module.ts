@@ -6,7 +6,7 @@ import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 import { EditComponent } from './edit/edit.component';
 import { ViewComponent } from "./view/view.component";
-import { HttpClientModule } from '@angular/common/http';
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms'; 
 import { SharedModule } from '../../shared/shared.module';
 import { InputTextModule } from 'primeng/inputtext';
@@ -17,26 +17,19 @@ import { CurrencyPipe } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DropdownModule } from 'primeng/dropdown';  
 
-@NgModule({
-  declarations: [
-    AddComponent,
-    ListComponent,
-    EditComponent,
-    ViewComponent,
-    ProviderNamePipe,
-    UnitNamePipe,
-    AssetTypeNamePipe
-  ],
-  imports: [
-    CommonModule,
-    AcquisitionRoutingModule,
-    HttpClientModule,
-    ReactiveFormsModule,
-    SharedModule,
-    InputTextModule,
-    FormsModule,
-    DropdownModule
-  ],
-  providers: [CurrencyPipe],
-})
+@NgModule({ declarations: [
+        AddComponent,
+        ListComponent,
+        EditComponent,
+        ViewComponent,
+        ProviderNamePipe,
+        UnitNamePipe,
+        AssetTypeNamePipe
+    ], imports: [CommonModule,
+        AcquisitionRoutingModule,
+        ReactiveFormsModule,
+        SharedModule,
+        InputTextModule,
+        FormsModule,
+        DropdownModule], providers: [CurrencyPipe, provideHttpClient(withInterceptorsFromDi())] })
 export class AcquisitionModule { }
