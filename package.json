@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^19.2.3",
     "@angular/platform-browser-dynamic": "^19.2.3",
     "@angular/router": "^19.2.3",
+    "@primeng/themes": "^19.0.10",
     "bootstrap": "^5.3.3",
     "primeicons": "^7.0.0",
     "primeng": "^19.0.10",
