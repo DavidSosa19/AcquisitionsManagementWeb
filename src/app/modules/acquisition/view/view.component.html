@@ -1,75 +1,60 @@
-<div class="container-fluid">
-    <p-card header="Detalle Adquisición"class="my-card">
-        <!-- Espacio y botón arriba de la tabla -->
-        <div class="d-flex justify-content-between mb-3">
-            <!-- Botón Volver (flecha hacia la izquierda + texto) -->
-            <button pButton pRipple type="button" icon="pi pi-arrow-left" class="p-button-text p-button-raise" 
-                    style="font-weight: bold; color: #00b3b3; border: none;" (click)="toList()">
-              Volver
-            </button>
-        
-            <!-- Contenedor de botones Editar y Eliminar con más espacio entre ellos -->
-            <div class="d-flex" style="gap: 10px;">
-              <!-- Botón Editar (azul) -->
-              <button pButton pRipple type="button" label="Editar" class="p-button-rounded p-button-info"
-                      (click)="toEdit()">
-              </button>
-        
-              <!-- Botón Eliminar (rojo) -->
-              <button pButton pRipple type="button" label="Eliminar" class="p-button-rounded p-button-danger"
-                      (click)="remove()">
-              </button>
-            </div>
+<!-- Componente para ver detalle de una adquisición -->
+<section>
+  <p-card header="Registrar Adquisición" [style]="{'height':'100%'}">
+    <button pButton label="Volver" icon="pi pi-angle-left" (click)="toList()"></button>
+    <button pButton label="Editar" icon="pi pi-save" (click)="toEdit()"></button>
+    <button pButton label="Eliminar" icon="pi pi-save" (click)="remove()"></button>
+    <form
+     [formGroup]="formAcquisition">
+      <fieldset>
+        <div class="parent">
+          <!--Presupuesto  -->
+          <div class="div1">
+          <label for="presupuesto">Presupuesto</label>
+          <input type="text" pInputText id="presupuesto" [value]="acquisition.presupuesto | currency:'USD' " [readonly]="true">
           </div>
-      
-        <!-- Formulario de visualización de detalles -->
-        <form [formGroup]="formAcquisition">
-          <div class="input-grid">
-            <div class="input-item">
-              <label for="presupuesto">Presupuesto</label>
-              <input type="text" pInputText id="presupuesto" [value]="acquisition.presupuesto | currency:'USD' " [readonly]="true">
-            </div>
-      
-            <div class="input-item">
-              <label for="unidad">Unidad</label>
-              <input type="text" pInputText id="unidad" [value]=" acquisition.unidad | unitName | async " [readonly]="true">
-            </div>
-      
-            <div class="input-item">
-              <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
-              <input type="text" pInputText id="tipoBienServicio" [value]=" acquisition.tipoBienServicio | assetTypeName | async " [readonly]="true">
-            </div>
-      
-            <div class="input-item">
-              <label for="cantidad">Cantidad</label>
-              <input type="text" pInputText id="cantidad" formControlName="cantidad" [readonly]="true">
-            </div>
-      
-            <div class="input-item">
-              <label for="valorUnitario">Valor Unitario</label>
-              <input type="text" pInputText id="valorUnitario" [value]="acquisition.valorUnitario | currency:'USD' " [readonly]="true">
-            </div>
-      
-            <div class="input-item">
-              <label for="valorTotal">Valor Total</label>
-              <input type="text" pInputText id="valorTotal" [value]="acquisition.valorTotal | currency:'USD' " [readonly]="true">
-            </div>
-      
-            <div class="input-item">
-              <label for="fechaAdquisicion">Fecha de Adquisición</label>
-              <input type="text" pInputText id="fechaAdquisicion" formControlName="fechaAdquisicion" [readonly]="true">
-            </div>
-      
-            <div class="input-item">
-              <label for="proveedor">Proveedor</label>
-              <input type="text" pInputText id="proveedor" [value]=" acquisition.proveedor | providerName | async " [readonly]="true">
-            </div>
-      
-            <div class="input-item">
-              <label for="documentacion">Documentación</label>
-              <input type="text" pInputText id="documentacion" formControlName="documentacion" [readonly]="true">
-            </div>
+          <!--Unidad  -->
+          <div class="div2">
+          <label for="unidad">Unidad</label>
+          <input type="text" pInputText id="unidad" [value]=" acquisition.unidad | unitName | async " [readonly]="true">
           </div>
-        </form>
-      </p-card>
-</div>
+          <!--Tipo Bien Servicio -->
+          <div class="div3">
+          <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
+          <input type="text" pInputText id="tipoBienServicio" [value]=" acquisition.tipoBienServicio | assetTypeName | async " [readonly]="true">
+          </div>
+          <!-- Cantidad -->
+           <div class="div4">
+          <label for="cantidad">Cantidad</label>
+          <input type="text" pInputText id="cantidad" formControlName="cantidad" [readonly]="true">
+          </div>
+          <!-- Valor Unitario -->
+           <div class="div5">
+          <label for="valorUnitario">Valor Unitario</label>
+          <input type="text" pInputText id="valorUnitario" [value]="acquisition.valorUnitario | currency:'USD' " [readonly]="true">
+          </div>
+          <!-- Valor Total -->
+           <div class="div6">
+          <label for="valorTotal">Valor Total</label>
+          <input type="text" pInputText id="valorTotal" [value]="acquisition.valorTotal | currency:'USD' " [readonly]="true">
+          </div>
+          <!-- fecha adquisicion -->
+           <div class="div7">
+          <label for="fechaAdquisicion">Fecha de Adquisición</label>
+          <input type="text" pInputText id="fechaAdquisicion" formControlName="fechaAdquisicion" [readonly]="true">
+          </div>
+          <!-- Proveedor -->
+           <div class="div8">
+          <label for="proveedor">Proveedor</label>
+          <input type="text" pInputText id="proveedor" [value]=" acquisition.proveedor | providerName | async " [readonly]="true">
+          </div>
+          <!-- Documentación -->
+           <div class="div9">
+          <label for="documentacion">Documentación</label>
+          <input type="text" pInputText id="documentacion" formControlName="documentacion" [readonly]="true">
+          </div>
+        </div>
+      </fieldset>
+    </form>
+  </p-card>
+</section>

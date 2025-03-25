@@ -2,3 +2,70 @@
 section{
     height: 100%;
 }
+
+label{
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+p-dropdown{
+    width: 100%;
+}
+
+.header-block {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 8px;
+    margin-bottom: 1rem;
+}
+
+.title-block {
+    grid-column: span 2 / span 2;
+}
+
+.button-block {
+    grid-column-start: 5;
+}
+
+.filter-header {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 8px;
+}
+    
+.title-block {
+    grid-column: span 2 / span 2;
+}
+
+.filter {
+    grid-column-start: 5;
+}
+
+.reset {
+    grid-column-start: 6;
+}
+      
+
+.filter-form {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(1, 1fr);
+    gap: 8px;
+}
+
+.unit-block {
+    grid-column: span 2 / span 2;
+}
+
+.asset-block {
+    grid-column: span 2 / span 2;
+    grid-column-start: 3;
+}
+
+.provider-block {
+    grid-column: span 2 / span 2;
+    grid-column-start: 5;
+}
+   
