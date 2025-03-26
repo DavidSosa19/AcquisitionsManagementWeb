@@ -1,17 +1,6 @@
-
-section{
-    height: 100%;
+.title-block button{
+    display: inline;
 }
-
-label{
-    display: block;
-    margin-bottom: 0.5rem;
-}
-
-p-dropdown{
-    width: 100%;
-}
-
 .header-block {
     display: grid;
     grid-template-columns: repeat(5, 1fr);
@@ -19,7 +8,6 @@ p-dropdown{
     gap: 8px;
     margin-bottom: 1rem;
 }
-
 .title-block {
     grid-column: span 2 / span 2;
 }
@@ -39,14 +27,9 @@ p-dropdown{
     grid-column: span 2 / span 2;
 }
 
-.filter {
+.buttons-block {
     grid-column-start: 5;
-}
-
-.reset {
-    grid-column-start: 6;
-}
-      
+}      
 
 .filter-form {
     display: grid;

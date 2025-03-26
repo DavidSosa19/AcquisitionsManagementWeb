@@ -14,6 +14,7 @@ import { DialogModule } from 'primeng/dialog';
 import { InputNumberModule } from 'primeng/inputnumber';
 import {FieldsetModule} from 'primeng/fieldset';
 import {MenubarModule} from 'primeng/menubar';
+import { DividerModule } from 'primeng/divider';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import {MenubarModule} from 'primeng/menubar';
     FieldsetModule,
     MenubarModule,
     InputNumberModule,
+    DividerModule
   ],
   exports: [
     ButtonModule,
@@ -48,6 +50,7 @@ import {MenubarModule} from 'primeng/menubar';
     DialogModule,
     InputNumberModule,
     BannerComponent,
+    DividerModule
     
   ]
 })

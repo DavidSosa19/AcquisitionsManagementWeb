@@ -42,7 +42,7 @@ import { AppRoutingModule } from './app-routing.module';
         provideAnimations(),
         providePrimeNG({
             theme: {
-                preset: Lara
+                preset: MyPreset
             }
         }),
         provideRouter(routes)

@@ -1,6 +1,6 @@
 <!-- Componente de la vista de listado de adquisiciones -->
 <section>
-  <p-card [style]="{'height':'70%'}">
+  <p-card [style]="{'height':'100%','overflow':'auto'}">
     <div class="header-block">
       <div class="title-block">
         <h3>Adquisiciones registradas</h3>
@@ -9,7 +9,7 @@
         <button pButton label="Registrar adquisición" icon="pi pi-plus" (click)="toCreate()"></button>
       </div>
     </div>
-    <p-table [value]="acquisitions" [paginator]="true" [rows]="5" [responsive]="true" selectionMode="single" [(selection)]="acquisitionSelected" (onRowSelect)="onRowSelect($event)" [responsive]="true" styleClass="p-datatable-sm">
+    <p-table [style]="{'max-height':'80%'}" [value]="acquisitions" [paginator]="acquisitions.length>5" [rows]="5" [responsive]="true" selectionMode="single" [(selection)]="acquisitionSelected" (onRowSelect)="onRowSelect($event)" [responsive]="true" >
     
       <!-- Header de la tabla -->
       <ng-template pTemplate="header">
@@ -35,16 +35,10 @@
         </ng-container>
       </ng-template>
     </p-table>
-  </p-card >
-  <p-card [style]="{'height':'30%'}">
+    <p-divider />
     <div class="filter-header">
       <div class="title-block">
-        <h3>Filtrar adquisiciones</h3>
-      </div>
-      <div class="filter">
         <button pButton label="Filtrar" icon="pi pi-sliders-v" (click)="filter()"></button>
-      </div>
-      <div class="reset">
         <button pButton label="Limpiar Filtro" icon="pi pi-undo" (click)="resetFilter()"></button>
       </div>
     </div>
@@ -64,9 +58,6 @@
                 placeholder="Seleccione una unidad"
                 [showClear]="true">
               </p-dropdown>
-          <div *ngIf="filterForm.get('unidad')?.invalid && filterForm.get('unidad')?.touched" class="text-danger">
-            <small>Unidad es obligatoria.</small>
-          </div>
         </div>
           <!--Tipo Bien Servicio -->
           <div class="asset-block">
@@ -80,9 +71,6 @@
                 placeholder="Seleccione un tipo de bien/servicio"
                 [showClear]="true">
               </p-dropdown>
-          <div *ngIf="filterForm.get('tipoBienServicio')?.invalid && filterForm.get('tipoBienServicio')?.touched" class="text-danger">
-            <small>Tipo de Bien/Servicio es obligatorio.</small>
-          </div>
         </div>
           <!-- Proveedor -->
           <div class="provider-block">
@@ -96,12 +84,9 @@
                 placeholder="Seleccione un proveedor"
                 [showClear]="true">
               </p-dropdown>
-          <div *ngIf="filterForm.get('proveedor')?.invalid && filterForm.get('proveedor')?.touched" class="text-danger">
-            <small>Proveedor es obligatorio.</small>
-          </div>
         </div>
         </div>
       </fieldset>
     </form>
-  </p-card>
+  </p-card >
 </section>
