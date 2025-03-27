@@ -1,0 +1,24 @@
+img{
+    width: 100%;
+    aspect-ratio: 256/109;
+}
+
+.container{
+    display: flex;
+    flex-flow: row nowrap ;
+    height: 100%;
+}
+.left{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.right{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}

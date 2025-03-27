@@ -1,60 +1,70 @@
 <!-- Componente para ver detalle de una adquisición -->
 <section>
-  <p-card header="Registrar Adquisición" [style]="{'height':'100%'}">
-    <button pButton label="Volver" icon="pi pi-angle-left" (click)="toList()"></button>
-    <button pButton label="Editar" icon="pi pi-save" (click)="toEdit()"></button>
-    <button pButton label="Eliminar" icon="pi pi-save" (click)="remove()"></button>
-    <form
-     [formGroup]="formAcquisition">
+  <p-card header="Detalle Adquisición">
+    <div class="header-block">
+      <div class="button-block">
+        <p-button label="Volver" icon="pi pi-angle-left" (click)="toList()" variant="text"/>
+        <p-button label="Editar" icon="pi pi-pencil" (click)="toEdit()" variant="text"/>
+        <button pButton label="Eliminar" icon="pi pi-trash" (click)="remove()" severity="danger"></button>
+      </div>
+    </div>
+    <form [formGroup]="formAcquisition">
       <fieldset>
         <div class="parent">
           <!--Presupuesto  -->
           <div class="div1">
-          <label for="presupuesto">Presupuesto</label>
-          <input type="text" pInputText id="presupuesto" [value]="acquisition.presupuesto | currency:'USD' " [readonly]="true">
+            <label for="presupuesto">Presupuesto</label>
+            <input type="text" pInputText id="presupuesto" [value]="acquisition.presupuesto | currency:'USD' "
+              [readonly]="true">
           </div>
           <!--Unidad  -->
           <div class="div2">
-          <label for="unidad">Unidad</label>
-          <input type="text" pInputText id="unidad" [value]=" acquisition.unidad | unitName | async " [readonly]="true">
+            <label for="unidad">Unidad</label>
+            <input type="text" pInputText id="unidad" [value]=" acquisition.unidad | unitName | async "
+              [readonly]="true">
           </div>
           <!--Tipo Bien Servicio -->
           <div class="div3">
-          <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
-          <input type="text" pInputText id="tipoBienServicio" [value]=" acquisition.tipoBienServicio | assetTypeName | async " [readonly]="true">
+            <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
+            <input type="text" pInputText id="tipoBienServicio"
+              [value]=" acquisition.tipoBienServicio | assetTypeName | async " [readonly]="true">
           </div>
           <!-- Cantidad -->
-           <div class="div4">
-          <label for="cantidad">Cantidad</label>
-          <input type="text" pInputText id="cantidad" formControlName="cantidad" [readonly]="true">
+          <div class="div4">
+            <label for="cantidad">Cantidad</label>
+            <input type="text" pInputText id="cantidad" formControlName="cantidad" [readonly]="true">
           </div>
           <!-- Valor Unitario -->
-           <div class="div5">
-          <label for="valorUnitario">Valor Unitario</label>
-          <input type="text" pInputText id="valorUnitario" [value]="acquisition.valorUnitario | currency:'USD' " [readonly]="true">
+          <div class="div5">
+            <label for="valorUnitario">Valor Unitario</label>
+            <input type="text" pInputText id="valorUnitario" [value]="acquisition.valorUnitario | currency:'USD' "
+              [readonly]="true">
           </div>
           <!-- Valor Total -->
-           <div class="div6">
-          <label for="valorTotal">Valor Total</label>
-          <input type="text" pInputText id="valorTotal" [value]="acquisition.valorTotal | currency:'USD' " [readonly]="true">
+          <div class="div6">
+            <label for="valorTotal">Valor Total</label>
+            <input type="text" pInputText id="valorTotal" [value]="acquisition.valorTotal | currency:'USD' "
+              [readonly]="true">
           </div>
           <!-- fecha adquisicion -->
-           <div class="div7">
-          <label for="fechaAdquisicion">Fecha de Adquisición</label>
-          <input type="text" pInputText id="fechaAdquisicion" formControlName="fechaAdquisicion" [readonly]="true">
+          <div class="div7">
+            <label for="fechaAdquisicion">Fecha de Adquisición</label>
+            <input type="text" pInputText id="fechaAdquisicion" formControlName="fechaAdquisicion" [readonly]="true">
           </div>
           <!-- Proveedor -->
-           <div class="div8">
-          <label for="proveedor">Proveedor</label>
-          <input type="text" pInputText id="proveedor" [value]=" acquisition.proveedor | providerName | async " [readonly]="true">
+          <div class="div8">
+            <label for="proveedor">Proveedor</label>
+            <input type="text" pInputText id="proveedor" [value]=" acquisition.proveedor | providerName | async "
+              [readonly]="true">
           </div>
           <!-- Documentación -->
-           <div class="div9">
-          <label for="documentacion">Documentación</label>
-          <input type="text" pInputText id="documentacion" formControlName="documentacion" [readonly]="true">
+          <div class="div9">
+            <label for="documentacion">Documentación</label>
+            <input type="text" pInputText id="documentacion" formControlName="documentacion" [readonly]="true">
           </div>
         </div>
       </fieldset>
     </form>
+    <p-divider />
   </p-card>
 </section>

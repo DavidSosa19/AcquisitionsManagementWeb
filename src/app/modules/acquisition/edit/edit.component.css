@@ -1,52 +1,58 @@
+:host ::ng-deep .p-card{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+.header-block {
+    height: 20%;
+    display: flex;
+    flex-flow: row nowrap ;
+    position: relative;
+}
+.button-block {
+    position: absolute;
+    right: 0;
+}  
 .parent {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(5, 1fr);
     gap: 8px;
 }
-
 .div1 {
     grid-column: span 2 / span 2;
 }
-
 .div2 {
     grid-column: span 2 / span 2;
     grid-column-start: 3;
 }
-
 .div3 {
     grid-column: span 2 / span 2;
     grid-column-start: 5;
 }
-
 .div4 {
     grid-column: span 2 / span 2;
     grid-row-start: 2;
 }
-
 .div5 {
     grid-column: span 2 / span 2;
     grid-column-start: 3;
     grid-row-start: 2;
 }
-
 .div6 {
     grid-column: span 2 / span 2;
     grid-column-start: 5;
     grid-row-start: 2;
 }
-
 .div7 {
     grid-column: span 3 / span 3;
     grid-row-start: 3;
 }
-
 .div8 {
     grid-column: span 3 / span 3;
     grid-column-start: 4;
     grid-row-start: 3;
 }
-
 .div9 {
     grid-column: span 6 / span 6;
     grid-row-start: 4;

@@ -21,6 +21,7 @@ export class ListComponent implements OnInit{
   assetTypes!: AssetServiceType[];
   acquisitionSelected!: Acquisition;
   filterPattern!:string;
+  visible: boolean = false;
 
   filterForm!: UntypedFormGroup;
 
@@ -72,6 +73,7 @@ export class ListComponent implements OnInit{
   
     this.filterPattern = filters.length ? `?${filters.join('&')}` : '';
     this.getItems(this.filterPattern);
+    this.visible = false;
   }
 
   resetFilter(){
@@ -139,4 +141,8 @@ export class ListComponent implements OnInit{
       }
     });
   }
+
+  showDialog() {
+    this.visible = true;
+}
 }

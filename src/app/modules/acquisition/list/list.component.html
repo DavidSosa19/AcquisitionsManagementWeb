@@ -1,16 +1,16 @@
 <!-- Componente de la vista de listado de adquisiciones -->
 <section>
-  <p-card [style]="{'height':'100%','overflow':'auto'}">
+  <p-card header="Adquisiciones registradas">
     <div class="header-block">
-      <div class="title-block">
-        <h3>Adquisiciones registradas</h3>
-      </div>
       <div class="button-block">
-        <button pButton label="Registrar adquisición" icon="pi pi-plus" (click)="toCreate()"></button>
+        <p-button (click)="showDialog()" icon="pi pi-sliders-v" label="Filtrar" variant="text"/>
+        <button pButton label="Registrar adquisición" icon="pi pi-plus"  (click)="toCreate()"></button>
       </div>
     </div>
-    <p-table [style]="{'max-height':'80%'}" [value]="acquisitions" [paginator]="acquisitions.length>5" [rows]="5" [responsive]="true" selectionMode="single" [(selection)]="acquisitionSelected" (onRowSelect)="onRowSelect($event)" [responsive]="true" >
-    
+    <p-table [value]="acquisitions" [paginator]="acquisitions.length>5" [rows]="5" [responsive]="true"
+      selectionMode="single" [(selection)]="acquisitionSelected" (onRowSelect)="onRowSelect($event)"
+      [responsive]="true">
+
       <!-- Header de la tabla -->
       <ng-template pTemplate="header">
         <tr>
@@ -21,7 +21,7 @@
           <th>Fecha Adquisición</th>
         </tr>
       </ng-template>
-  
+
       <!-- Cuerpo de la tabla -->
       <ng-template pTemplate="body" let-item>
         <ng-container *ngIf="acquisitions && acquisitions.length > 0">
@@ -36,57 +36,43 @@
       </ng-template>
     </p-table>
     <p-divider />
-    <div class="filter-header">
-      <div class="title-block">
-        <button pButton label="Filtrar" icon="pi pi-sliders-v" (click)="filter()"></button>
-        <button pButton label="Limpiar Filtro" icon="pi pi-undo" (click)="resetFilter()"></button>
-      </div>
-    </div>
-    <form
-      [formGroup]="filterForm">
+  </p-card>
+</section>
+
+
+<p-dialog header="Filtrar Adquisiciones" [modal]="true" [(visible)]="visible">
+  <div class="filters">
+    <form [formGroup]="filterForm">
       <fieldset>
         <div class="filter-form">
           <!--Unidad  -->
           <div class="unit-block">
-          <label for="unidad">Unidad</label>
-          <p-dropdown 
-                id="unidad"
-                [options]="unities" 
-                formControlName="unidad"
-                optionLabel="nombre"
-                optionValue="id"
-                placeholder="Seleccione una unidad"
-                [showClear]="true">
-              </p-dropdown>
-        </div>
+            <label for="unidad">Unidad</label>
+            <p-dropdown id="unidad" [options]="unities" formControlName="unidad" optionLabel="nombre" optionValue="id"
+              placeholder="Seleccione una unidad" [showClear]="true">
+            </p-dropdown>
+          </div>
           <!--Tipo Bien Servicio -->
           <div class="asset-block">
-          <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
-          <p-dropdown 
-                id="tipoBienServicio"
-                [options]="assetTypes" 
-                formControlName="tipoBienServicio"
-                optionLabel="nombre"
-                optionValue="id"
-                placeholder="Seleccione un tipo de bien/servicio"
-                [showClear]="true">
-              </p-dropdown>
-        </div>
+            <label for="tipoBienServicio">Tipo de Bien/Servicio</label>
+            <p-dropdown id="tipoBienServicio" [options]="assetTypes" formControlName="tipoBienServicio"
+              optionLabel="nombre" optionValue="id" placeholder="Seleccione un tipo de bien/servicio"
+              [showClear]="true">
+            </p-dropdown>
+          </div>
           <!-- Proveedor -->
           <div class="provider-block">
-          <label for="proveedor">Proveedor</label>
-          <p-dropdown 
-                id="proveedor"
-                [options]="providers" 
-                formControlName="proveedor"
-                optionLabel="nombre"
-                optionValue="id"
-                placeholder="Seleccione un proveedor"
-                [showClear]="true">
-              </p-dropdown>
-        </div>
+            <label for="proveedor">Proveedor</label>
+            <p-dropdown id="proveedor" [options]="providers" formControlName="proveedor" optionLabel="nombre"
+              optionValue="id" placeholder="Seleccione un proveedor" [showClear]="true">
+            </p-dropdown>
+          </div>
         </div>
       </fieldset>
     </form>
-  </p-card >
-</section>
+    <div class="filter-buttons">
+      <button pButton label="Aplicar" icon="pi pi-check" (click)="filter()"></button>
+      <button pButton label="Resetear" icon="pi pi-undo" (click)="resetFilter()"></button>
+    </div>
+  </div>
+</p-dialog>

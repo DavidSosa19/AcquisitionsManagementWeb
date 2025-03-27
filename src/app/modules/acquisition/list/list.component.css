@@ -1,54 +1,53 @@
-.title-block button{
-    display: inline;
+
+:host ::ng-deep .p-datatable-table{
+    height: 100%;
+}
+:host ::ng-deep .p-datatable-table-container{
+    height: 90%;
+}
+:host ::ng-deep .p-datatable{
+    min-height: fit-content;
+    height: 90%;
+}
+:host ::ng-deep .p-card{
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+}
+:host ::ng-deep .p-dialog{
+    height: fit-content;
+    width: 80%;
+    overflow: auto;
 }
 .header-block {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 8px;
-    margin-bottom: 1rem;
+    height: 20%;
+    display: flex;
+    flex-flow: row nowrap ;
+    position: relative;
 }
-.title-block {
-    grid-column: span 2 / span 2;
-}
-
 .button-block {
-    grid-column-start: 5;
-}
-
-.filter-header {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    grid-template-rows: repeat(1, 1fr);
-    gap: 8px;
-}
-    
-.title-block {
-    grid-column: span 2 / span 2;
-}
-
-.buttons-block {
-    grid-column-start: 5;
-}      
-
+    position: absolute;
+    right: 0;
+}   
 .filter-form {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
     grid-template-rows: repeat(1, 1fr);
     gap: 8px;
 }
-
 .unit-block {
     grid-column: span 2 / span 2;
 }
-
 .asset-block {
     grid-column: span 2 / span 2;
     grid-column-start: 3;
 }
-
 .provider-block {
     grid-column: span 2 / span 2;
     grid-column-start: 5;
+}  
+.filter-buttons {
+    display: flex;
+    margin-top: 15px;
+    padding: 2px;
 }
-   
