@@ -1,5 +1,9 @@
-<nav>
-    <img src="https://www.adres.gov.co/PublishingImages/Header%20Logos/logo-adres.png"  />
-    <a href="/dashboard">Home</a>
-    <a href="/audit">Auditoria</a>
+<nav class="menu-container">
+    <div class="logo-box">
+        <img src="https://www.adres.gov.co/PublishingImages/Header%20Logos/logo-adres.png"  />
+    </div>
+    <div class="buttons-box">
+        <p-button label="Inicio" icon="pi pi-home" (click)="toHome()" variant="text"/>
+        <p-button label="Auditoría" icon="pi pi-eye" (click)="toHome()" variant="text"/>
+    </div>
 </nav>

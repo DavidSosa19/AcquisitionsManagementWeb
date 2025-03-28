@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-view',
@@ -6,6 +7,16 @@ import { Component } from '@angular/core';
     styleUrl: './view.component.css',
     standalone: false
 })
-export class ViewComponent {
+export class ViewComponent implements OnInit {
+
+    constructor(private router: Router) { 
+
+    }
+
+    ngOnInit(): void { } 
+    
+    toAdquisitions(){
+        this.router.navigate(['/acquisitions']);
+    }
 
 }

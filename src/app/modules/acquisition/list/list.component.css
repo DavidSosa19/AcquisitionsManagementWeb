@@ -14,12 +14,19 @@
     width: 100%;
     overflow: auto;
 }
+:host ::ng-deep .p-card-body{
+    height: 100%;
+}
+:host ::ng-deep .p-card-content{
+    min-height: 50%;
+}
 :host ::ng-deep .p-dialog{
     height: fit-content;
     width: 80%;
     overflow: auto;
 }
 .header-block {
+    min-height: fit-content;
     height: 20%;
     display: flex;
     flex-flow: row nowrap ;

@@ -1,8 +1,3 @@
-img{
-    width: 100%;
-    aspect-ratio: 256/109;
-}
-
 .container{
     display: flex;
     flex-flow: row nowrap ;
@@ -21,4 +16,11 @@ img{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
+}
+img{
+    width: 100%;
+    aspect-ratio: 256/109;
+}
+button{
+    width: fit-content;
 }

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import {MenuItem} from 'primeng/api';
 
 @Component({
@@ -9,22 +10,13 @@ import {MenuItem} from 'primeng/api';
 })
 export class BannerComponent implements OnInit{
 
-  items: MenuItem[] = [];
-  constructor(){
+  constructor(private router: Router){
   }
 
   ngOnInit() {
-      this.items = [
-        {
-            label:'Home',
-            icon: 'pi pi-home',
-            routerLink:'dashboard'
-        },
-        {
-          label:'Auditoria',
-          icon: 'pi pi-eye',
-          routerLink:'auditoria'
-      },
-      ]
-      }
+  }
+
+  toHome(){
+    this.router.navigate(['/dashboard']);
+}
 }
