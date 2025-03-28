@@ -2,6 +2,12 @@
     height: 100%;
     width: 100%;
     overflow: auto;
+    padding: 0.5rem 2rem 2rem 2rem; 
+    background-color: #4C67B4;
+}
+:host ::ng-deep .p-card-body{
+    background-color: #ffffff;
+    border-radius: 10px;
 }
 .header-block {
     height: 20%;

@@ -3,8 +3,8 @@
   <p-card header="Adquisiciones registradas">
     <div class="header-block">
       <div class="button-block">
-        <p-button (click)="showDialog()" icon="pi pi-sliders-v" label="Filtrar" variant="text"/>
-        <button pButton label="Registrar adquisición" icon="pi pi-plus"  (click)="toCreate()"></button>
+        <p-button (click)="showDialog()" icon="pi pi-sliders-v" label="Filtrar" variant="text" />
+        <p-button label="Registrar adquisición" icon="pi pi-plus" (click)="toCreate()" />
       </div>
     </div>
     <p-table [value]="acquisitions" [paginator]="acquisitions.length>5" [rows]="5" [responsive]="true"
@@ -35,7 +35,6 @@
         </ng-container>
       </ng-template>
     </p-table>
-    <p-divider />
   </p-card>
 </section>
 
@@ -71,8 +70,8 @@
       </fieldset>
     </form>
     <div class="filter-buttons">
-      <button pButton label="Aplicar" icon="pi pi-check" (click)="filter()"></button>
-      <button pButton label="Resetear" icon="pi pi-undo" (click)="resetFilter()"></button>
+      <p-button label="Aplicar" icon="pi pi-check" (click)="filter()" />
+      <p-button label="Resetear" icon="pi pi-undo" (click)="resetFilter()" />
     </div>
   </div>
 </p-dialog>

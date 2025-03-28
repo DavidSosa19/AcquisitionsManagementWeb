@@ -42,7 +42,10 @@ import { AppRoutingModule } from './app-routing.module';
         provideAnimations(),
         providePrimeNG({
             theme: {
-                preset: MyPreset
+                preset: MyPreset,
+                options: {
+                    darkModeSelector: false || 'none'
+                }
             }
         }),
         provideRouter(routes)

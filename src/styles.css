@@ -11,12 +11,16 @@ html, body{
     Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', 
     sans-serif;
     overflow: hidden;
+    background-color: white;
+    /* background-color: #4C67B4; */
+    /* background: linear-gradient(to right, #165874, #2a2c57); */
+    /* background-color: black; */
 }
 section{
     height: 100%;
     margin: 0;
 }
-button + button {
+p-button + p-button {
     margin-left: 8px;
 }
 label{
